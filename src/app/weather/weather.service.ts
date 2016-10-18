@@ -13,21 +13,20 @@ export class WeatherService {
     getWeather(): Observable<Weather> {
         return this.http
             .get(this.url)
-            .map((resp: Response) => this.tranformJson(resp.json()))
+            .map((resp: Response) => resp.json())
+            .pluck('query','results','channel')
+            .map(this.transform)
             .catch(this.handleError);
     }
 
-    private tranformJson(json): Weather {
-        let result: Weather = { high: '', low: '', currentTemp: '', description: '' }
-        const r = json.query.results.channel;
-        const current = r.item.condition.temp;
-        const f = r.item.forecast[0];
-        const { high, low, text} = f;
-        result['high'] = high;
-        result['low'] = low;
-        result['description'] = text;
-        result['currentTemp'] = current;
-        return result;
+    private transform({item: {forecast, condition}}): Weather {
+        const [{high, low, text}] = forecast;
+        return {
+            currentTemp: condition.temp,
+            high,
+            low,
+            description: text
+        }
     }
 
     private handleError(error: Response) {
