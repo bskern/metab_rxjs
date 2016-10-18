@@ -8,18 +8,20 @@ import { HackerNewsComponent } from './hackernews/hn.component';
 import { HackerNewsService } from './hackernews/hn.service';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherService } from './weather/weather.service';
+import { RedditComponent } from './reddit/reddit.component';
+import { RedditService } from './reddit/reddit.service';
 import { HeaderComponent, ArticleComponent} from '../app/shared/index';
 
 @NgModule({
   declarations: [
-    AppComponent, WeatherComponent, HackerNewsComponent, HeaderComponent, ArticleComponent
+    AppComponent, WeatherComponent, HackerNewsComponent, RedditComponent, HeaderComponent, ArticleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [WeatherService, HackerNewsService],
+  providers: [WeatherService, HackerNewsService, RedditService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

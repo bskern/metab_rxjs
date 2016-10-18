@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-4">
+        <app-header [cssClass]="'Redditheader'" [heading]="'Scala'">
+        </app-header>
+        <app-article *ngFor="let item of scalaSubReddit | async" [url]=item.url [title]=item.title [isReddit]=True>
+        </app-article>
+    </div>
+    <div class="col-md-4">
+        <app-header [cssClass]="'Redditheader'" [heading]="'Elm'"></app-header>
+        <app-article *ngFor="let item of elmSubReddit | async" [url]=item.url [title]=item.title [isReddit]=True>
+        </app-article>
+    </div>
+    <div class="col-md-4">
+        <app-header [cssClass]="'Redditheader'" [heading]="'React'"></app-header>
+        <app-article *ngFor="let item of reactSubReddit | async" [url]=item.url [title]=item.title [isReddit]=True>
+        </app-article>
+    </div>
+</div>
